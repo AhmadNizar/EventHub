@@ -1,0 +1,33 @@
+<% %>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Sign Up</title>
+</head>
+<body>
+<h3>Daftar Baru</h3>
+<form action="" method="post">
+  First name:<br>
+  <input type="text" name="first_name" placeholder="First Name">
+  <br>
+  Last name:<br>
+  <input type="text" name="last_name" placeholder="Last Name">
+  <br>
+  Username:<br>
+  <input type="text" name="username" placeholder="Username">
+  <br>
+  Password:<br>
+  <input type="text" name="password" placeholder="Password">
+  <br>
+  Email:<br>
+  <input type="text" name="email" placeholder="Email">
+  <br><br>
+  <input type="submit" value="Submit">
+</form> 
+</body>
+<script>
+	<%if(err){%>
+		alert("<%=err%>")
+	<%}%>
+</script>
+</html>
