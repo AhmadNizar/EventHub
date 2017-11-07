@@ -13,7 +13,7 @@
   </head>
   <body>
 
-<nav class="navbar navbar-inverse">
+<nav class="navbar">
   <div class="container-fluid">
     <div class="navbar-header">
       <a style="font-family: 'Gloria Hallelujah', cursive;" class="navbar-brand" href="#">GroupHub</a>
@@ -28,10 +28,20 @@
         </ul>
       </li>
       <li><a href="#">Page 2</a></li>
+      <%if(login){%>
+        <li><a href="#">My Groups</a></li>
+      <%}%>
     </ul>
+
+    <%if(login){%>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="/Logout"><span class="glyphicon glyphicon-log-in"></span>Logout</a></li>
+    </ul>
+    <%}else{%>
     <ul class="nav navbar-nav navbar-right">
       <li><a href="/signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
       <li><a href="/signin"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
     </ul>
+    <%}%>
   </div>
 </nav>

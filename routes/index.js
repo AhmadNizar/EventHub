@@ -4,7 +4,7 @@ const Models  = require('../models')
 const bcrypt  = require('bcrypt');
 
 router.get('/', (req, res) => {
-	res.render('landingpage')
+	res.render('landingpage', {login : req.session.login})
 })
 
 
@@ -43,7 +43,8 @@ router.post('/signin', (req, res) => {
 			bcrypt.compare(req.body.password, user.password).then(function(result) {
     		// res == true
     		if(result){
-    			res.send('masuk gan')
+    			req.session.login = true
+    			res.render('landingpage', {login : req.session.login})
     		}else{
     			let err = "Username or Password is invalid"
 					res.render('signin', {err})
@@ -54,6 +55,11 @@ router.post('/signin', (req, res) => {
 			res.render('signin', {err})
 		}
 	})
+})
+
+router.get('/logout', (req, res, next)=>{
+	req.session.destroy()
+	res.redirect('/')
 })
 
 module.exports = router
