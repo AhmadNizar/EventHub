@@ -1,0 +1,23 @@
+<% %>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>SignIn</title>
+</head>
+<body>
+<form action="/signin" method="post">
+  Username:<br>
+  <input type="text" name="username" placeholder="Username">
+  <br>
+  Password:<br>
+  <input type="text" name="password" placeholder="Password">
+  <br><br>
+  <input type="submit" value="SignIn">
+</form> 
+</body>
+<script>
+	<%if(err){%>
+		alert("<%=err%>")
+	<%}%>
+</script>
+</html>
