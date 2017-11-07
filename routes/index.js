@@ -7,11 +7,11 @@ router.get('/', (req, res) => {
 	res.render('landingpage')
 })
 
-
+router
 
 router.get('/signup', (req, res)=> {
 	let err = ""
-	res.render('signup', {err})
+	res.render('login/signup', {err})
 })
 
 router.post('/signup', (req, res)=> {
@@ -30,7 +30,7 @@ router.post('/signup', (req, res)=> {
 
 router.get('/signin', (req, res) => {
 	let err = ""
-	res.render('signin', {err})
+	res.render('login/signin', {err})
 })
 
 router.post('/signin', (req, res) => {
