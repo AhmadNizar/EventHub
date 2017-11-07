@@ -5,8 +5,7 @@ const Model = require('../models')
 router.get('/', (req, res) => {
   Model.Group.findAll()
   .then(dataGroups => {
-    
-    res.render('groups/groups', {dataGroups:dataGroups})
+    res.render('groups/groups', {dataGroups:dataGroups, login:req.session.login})
   })
 })
 
