@@ -8,6 +8,7 @@ router.get('/', (req, res) => {
 })
 
 
+
 router.get('/signup', (req, res)=> {
 	let err = ""
 	res.render('signup', {err})

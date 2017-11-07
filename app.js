@@ -12,4 +12,9 @@ const index = require('./routes/index')
 
 app.use('/', index)
 
+const group = require('./routes/group')
+
+app.use('/groups', group)
+
+
 app.listen(3000)
