@@ -7,7 +7,8 @@ router.get('/', (req, res) => {
 })
 
 router.get('/signup', (req, res)=> {
-	res.render('signup')
+	let err = ""
+	res.render('signup', {err})
 })
 
 router.post('/signup', (req, res)=> {
@@ -17,6 +18,10 @@ router.post('/signup', (req, res)=> {
 		username : req.body.username, 
 		password : req.body.password,
 		email : req.body.email
+	}).then(()=> {
+		res.redirect('/signin')
+	}).catch(err=> {
+		res.render('signup', {err})
 	})
 })
 
