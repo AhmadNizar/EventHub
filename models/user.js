@@ -1,4 +1,8 @@
 'use strict';
+
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
+
 module.exports = (sequelize, DataTypes) => {
   var User = sequelize.define('User', {
     first_name: DataTypes.STRING,
@@ -21,12 +25,13 @@ module.exports = (sequelize, DataTypes) => {
         isEmail: true
       }
     }
-  }, {
-    classMethods: {
-      associate: function(models) {
-        // associations can be defined here
-      }
-    }
-  });
+  })
+
+  User.beforeCreate((user, options) => {
+     return bcrypt.hash(user.password, saltRounds).then(function(hash) {
+      user.password = hash
+    })
+  })
+
   return User;
 };
