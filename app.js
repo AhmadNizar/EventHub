@@ -11,12 +11,19 @@ app.use(session({secret: "rahasia tong"}))
 
 
 const index = require('./routes/index')
+const group = require('./routes/group')
+const user = require('./routes/user')
+const event = require('./routes/event')
+
+
+
 
 app.use('/', index)
 
-const group = require('./routes/group')
+app.use('/user', user)
 
 app.use('/groups', group)
 
+app.use('/', event)
 
 app.listen(3000)

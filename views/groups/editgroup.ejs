@@ -1,0 +1,36 @@
+<%include ../partials/navbar.ejs%>
+
+
+  <div class="container-edit">
+  <h2>Edit</h2>
+  <form id="form-edit" action="/groups/editgroup/<%= dataGroup.id %>" method="post">
+    <label>Name Of Group</label>
+    <input id=boxinput type="text" name="name_of_group" value="<%= dataGroup.name_of_group%>">
+    <label>Category</label>
+    <select id="selectbox" name="category">
+     <div class="valuebox">
+      <option value="hobby">Hobby</option>
+      <option value="pendidikan">Pendidikan</option>
+      <option value="technologies">Technologies</option>
+      <option value="food" selected>Food</option>
+      <option value="etc" selected>Other</option>
+    </div>
+  </select>
+  <input type="submit" name="" value="submit">
+
+  <p>Or</p>
+
+  <div class="btn-delete">
+  <h2><a  href="/groups/addevent/<%= dataGroup.id%>">Add Event</a></h2>
+  </div>
+  <p>Or</p>
+  <div class="btn-delete">
+  <h2><a  href="/groups/deletegroup/<%= dataGroup.id%>">Delete</a></h2>
+
+
+  </div>
+  </form>
+
+  </div>
+</body>
+</html>

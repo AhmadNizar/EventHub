@@ -1,0 +1,27 @@
+<%include ../partials/navbar.ejs%>
+
+
+  <div class="container-edit">
+  <h2>Add Ever</h2>
+  <form id="form-edit" action="/groups/editgroup/<%= GroupId %>" method="post">
+    <label>Name Of Event</label>
+    <input id=boxinput type="text" name="name_of_event" placeholder="Seminar">
+    <br>
+    <label>Locaton</label>
+    <input id=boxinput type="text" name="location" placeholder="Jakarta">
+    <br>
+    <label>Date</label>
+      <input id="datepicker" />
+    <br>
+    <br>
+    <input type="submit" name="" value="submit">
+
+  </form>
+  </div>
+</body>
+  <script>
+  $(document).ready(function() {
+    $("#datepicker").datepicker();
+  });
+  </script>
+</html>

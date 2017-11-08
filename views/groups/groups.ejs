@@ -1,8 +1,10 @@
 <%include ../partials/navbar.ejs%>
 
 
-
-<a  href="/groups/addNewGroup"><button style="margin-bottom: 10px" type="button" name="button">Create New Group</button></a>
+  <div class="select">
+    <h1>Groups</h1>
+    <a  href="/groups/addNewGroup"><button style="margin-bottom: 10px" type="button" name="button">Create New Group</button></a>
+  </div>
 <% dataGroups.forEach(item => { %>
 
 <div class="container group">
@@ -15,7 +17,8 @@
       <li>Lorem ipsum dolor sit amet, consectetur </li>
       <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor i</li>
     </ul>
-    <a href="#" class="button">Join</a>
+
+    <a href="/user/join/<%= item.id%>" class="button">Join</a>
   </div>
 
 
