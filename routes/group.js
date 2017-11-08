@@ -10,6 +10,14 @@ router.get('/', (req, res) => {
 })
 
 
+router.get('/addNewGroup', (req, res) => {
+  console.log(req.session);
+  res.send(req.session)
+  //res.render('groups/add', )
+})
+
+
+
 
 
 

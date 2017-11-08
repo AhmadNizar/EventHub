@@ -44,15 +44,16 @@ router.post('/signin', (req, res) => {
     		// res == true
     		if(result){
     			req.session.login = true
+					req.session.UserId = user.id
     			res.render('landingpage', {login : req.session.login})
     		}else{
     			let err = "Username or Password is invalid"
-					res.render('signin', {err})
+					res.render('login/signin', {err})
     		}
 			});
 		}else{
 			let err = "Username or password is invalid"
-			res.render('signin', {err})
+			res.render('login/signin', {err})
 		}
 	})
 })
