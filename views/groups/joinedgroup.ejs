@@ -1,0 +1,25 @@
+<%include ../partials/navbar.ejs%>
+
+<h1>joinedgroup</h1>
+
+
+<a  href="/groups/addNewGroup"><button style="margin-bottom: 10px" type="button" name="button">Create New Group</button></a>
+
+<% dataGroups.Groups.forEach(item => { %>
+<% if(item.UserGroup.role != 'admin') { %>
+  <div class="container group">
+    <div class="grid-1-5">
+      <h2><%= item.category %></h2>
+      <h3><span class="uppercase"><%= item.name_of_group%></span></h3>
+      <p>Lorem ipsum dolor sit amet</p>
+      <ul>
+        <li>Lorem ipsum dolor sit amet, consectetur</li>
+        <li>Lorem ipsum dolor sit amet, consectetur </li>
+        <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor i</li>
+      </ul>
+      <a href="#" class="button">Join</a>
+    </div>
+  </div>
+
+<% } %>
+<% })  %>

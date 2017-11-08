@@ -29,7 +29,14 @@
       </li>
       <li><a href="/groups">Group</a></li>
       <%if(login){%>
-        <li><a href="#">My Groups</a></li>
+
+          <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown">My Groups <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="/groups/mygroup">My Group</a></li>
+          <li><a href="/groups/joinedgroup">Joined Group</a></li>
+
+        </ul>
+      </li>
       <%}%>
     </ul>
 

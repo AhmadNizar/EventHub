@@ -11,5 +11,12 @@ module.exports = (sequelize, DataTypes) => {
       }
     }
   });
+
+
+  UserGroup.associate = function(model){
+    UserGroup.belongsTo(model.User)
+    UserGroup.belongsTo(model.Group)
+  }
+
   return UserGroup;
 };
