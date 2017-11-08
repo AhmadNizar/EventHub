@@ -9,9 +9,9 @@ router.get('/', (req, res) => {
   })
 })
 
+// ================ mygroup ================== //
 
 router.get('/mygroup', (req, res) => {
-  //console.log(req.session.UserId, 'ooooooooooooooo');
   Model.User.findOne(
   {
     include:[Model.Group],
@@ -22,6 +22,15 @@ router.get('/mygroup', (req, res) => {
     res.render('groups/mygroup', {login:req.session.login, dataGroups:dataUser})
   })
 })
+
+
+// router.get('/editgroup', (req, res) => {
+//   Model.User.findOne(
+//
+//   )
+// })
+
+// ================ joinedgroup ================== //
 
 router.get('/joinedgroup', (req, res) => {
 
@@ -37,9 +46,9 @@ router.get('/joinedgroup', (req, res) => {
 })
 
 
-router.get('/addnewgroup', (req, res) => {
-  res.render('groups/createnewgroup')
-})
+// router.get('/addnewgroup', (req, res) => {
+//   res.render('groups/createnewgroup')
+// })
 
 router.post('/addnewgroup', (req, res) => {
   Model.Group.create({
@@ -61,16 +70,6 @@ router.post('/addnewgroup', (req, res) => {
 })
 
 
-//
-// router.get('/addNewGroup', (req, res) => {
-//   model.Group.findOne(
-//     {where:{id:req.params.id}
-//   )
-//   .then(dataGroup => {
-//     res.render('/editgroup')
-//   })
-//
-// })
 
 
 
