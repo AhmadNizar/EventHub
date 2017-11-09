@@ -2,6 +2,7 @@ const express = require('express')
 const router  = express.Router()
 const mailer = require('../helpers/nodemailer')
 const Model = require('../models')
+const checkAuth = require('../helpers/login')
 
 
 router.get('/', (req, res) => {
@@ -16,13 +17,13 @@ router.get('/', (req, res) => {
 })
 
 
-//
-// router.get('/addevent/:id', (req, res) => {
-//   res.render('groups/addevents', {GroupId:req.params.id, login:req.session.login})
-// })
-//
-//
-router.post('/addevent/:id', (req, res) => {
+
+router.get('/addevent/:id', checkAuth, (req, res) => {
+  res.render('groups/addevents', {GroupId:req.params.id, login:req.session.login})
+})
+
+
+router.post('/addevent/:id', checkAuth, (req, res) => {
   let name_of_event = req.body.name_of_event
   let location = req.body.location
   let date = req.body.date
@@ -36,27 +37,42 @@ router.post('/addevent/:id', (req, res) => {
     GroupId : GroupId
   })
   .then(dataEvent => {
-    res.redirect('/groups')
+    res.redirect('/event')
   })
 })
 //
 
-router.get('/detailevent/:id', (req, res) => {
+router.get('/detailevent/:id', checkAuth, (req, res) => {
+  let member = ''
   Model.Event.findOne({
     include:[
       Model.Group
     ], where:{id:req.params.id}
   })
   .then(dataEvent => {
-    //res.send(dataEvent)
-    res.render('groups/votes', {dataEvent:dataEvent, login:req.session.login})
+    Model.UserGroup.findAll({where:{GroupId:dataEvent.GroupId}})
+    .then(dataUser =>{
+      let index = dataUser.findIndex(user => {
+        return user.UserId == req.session.UserId
+      })
+      console.log(index, '-----');
+      if(index == -1){
+         member = false
+      }else{
+         member = true
+      }
+      console.log(member);
+      res.render('groups/votes', {dataEvent:dataEvent, login:req.session.login, member:member})
+    })
+
+
   })
 })
 
 
 
 
-router.post('/detailevent/:id', (req, res) => {
+router.post('/detailevent/:id', checkAuth, (req, res) => {
 
   Model.Event.findOne({
     include:[
@@ -80,8 +96,8 @@ router.post('/detailevent/:id', (req, res) => {
          dataGroup.forEach(item => {
            toMail.push(item.User.email)
             mailer(item, dataEvent)
-          })
-         }
+         })
+        }
       })
       .then(() => {
         res.redirect('/')

@@ -4,16 +4,20 @@
   <div class="container-edit">
   <h2> Event</h2>
 
-  <h4><%=dataEvent.Group.name_of_group%></h4>
+  <h4>Group :  <%=dataEvent.Group.name_of_group%></h4>
 
-    <h4><%=dataEvent.name_of_event%></h4>
+    <h4>Event :  <%=dataEvent.name_of_event%></h4>
         <h4>Total : <%=dataEvent.votes%></h4>
 
   <form id="form-edit" action="/event/detailevent/<%=dataEvent.id%>" method="post">
 
 
+    <%if(member){%>
+      <input type="submit" name="" value="Vote">
+    <%}else{%>
+        <a href="/user/join/<%=dataEvent.GroupId%>" class="button">Join</a>
+    <%}%>
 
-    <input type="submit" name="" value="Vote">
 
   </form>
   </div>
