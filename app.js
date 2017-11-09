@@ -10,20 +10,22 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(session({secret: "rahasia tong"}))
 
 
-const index = require('./routes/index')
-const group = require('./routes/group')
-const user = require('./routes/user')
-const event = require('./routes/event')
-
+const index  = require('./routes/index')
+const group  = require('./routes/group')
+const user   = require('./routes/user')
+const events  = require('./routes/event')
 
 
 
 app.use('/', index)
 
+app.use('/index', index)
+
+
 app.use('/user', user)
 
 app.use('/groups', group)
 
-app.use('/', event)
+app.use('/event', events)
 
 app.listen(3000)

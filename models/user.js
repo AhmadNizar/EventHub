@@ -27,6 +27,8 @@ module.exports = (sequelize, DataTypes) => {
     }
   })
 
+  
+
   User.beforeCreate((user, options) => {
      return bcrypt.hash(user.password, saltRounds).then(function(hash) {
       user.password = hash

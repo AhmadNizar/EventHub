@@ -1,17 +1,18 @@
 <%include ../partials/navbar.ejs%>
 
   <%if(login){%>
-    <div class="select">
-      <h1>Groups</h1>
-      <a  href="/groups/addNewGroup"><button style="margin-bottom: 10px" type="button" name="button">Create New Group</button></a>
-    </div>
+
+      <h1>Events</h1>
+
   <%}%>
 
-<% dataGroups.forEach(item => { %>
+
+
+<% dataEvent.forEach(item => { %>
 
 <div class="container group">
   <div class="grid-1-5">
-    <h2><%= item.category %></h2>
+    <h2><%= item.name_of_event %></h2>
     <h3><span class="uppercase"><%= item.name_of_group%></span></h3>
     <p>Lorem ipsum dolor sit amet</p>
     <ul>
@@ -20,7 +21,7 @@
       <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor i</li>
     </ul>
 
-    
+    <a href="/event/detailevent/<%= item.id%>" class="button">Details</a>
   </div>
 
 

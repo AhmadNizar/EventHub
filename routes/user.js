@@ -1,10 +1,10 @@
 const express = require('express')
 const router  = express.Router()
-Model = require('../models')
+const Model = require('../models')
+const checkAuth = require('../helpers/login')
 
 
-
-router.get('/join/:id', (req, res) => {
+router.get('/join/:id', checkAuth, (req, res) => {
   Model.UserGroup.create({
     UserId : req.session.UserId,
     GroupId : req.params.id,
@@ -15,9 +15,9 @@ router.get('/join/:id', (req, res) => {
   })
 })
 
-router.get('/unfollow/:id', (req, res) => {
-  console.log(req.body);
-})
+// router.get('/unfollow/:id', (req, res) => {
+//   console.log(req.body);
+// })
 
 
 

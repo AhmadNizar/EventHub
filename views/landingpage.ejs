@@ -1,5 +1,7 @@
 <%include ./partials/navbar.ejs%>
 
+
+
 		<!-- Wrapper -->
 			<div id="wrapper">
 
@@ -23,39 +25,45 @@
 					<section id="main">
 							<h4 style="font-size:4em">Upcoming Events</h4>
 						<!-- Thumbnails -->
+
+
+
 							<section class="thumbnails">
 								<div>
-									<a href="images/fulls/01.jpg">
+
+									<a href="/events/voting">
 										<img src="images/1024.png" alt="" />
-										<h3>Lorem ipsum dolor sit amet</h3>
+										<h3><%=dataEvent[0].name_of_event%></h3>
+										<h4><%=dataEvent[0].date%></h4>
 									</a>
 									<a href="images/fulls/02.jpg">
 										<img src="images/boat.jpeg" alt="" />
-										<h3>Lorem ipsum dolor sit amet</h3>
+										<h3><%=dataEvent[1].name_of_event%></h3>
+										<h4><%=dataEvent[1].date%></h4>
 									</a>
 								</div>
 								<div>
 									<a href="images/fulls/03.jpg">
 										<img src="images/hactiv8-logo.jpg" alt="" />
-										<h3>Lorem ipsum dolor sit amet</h3>
+
 									</a>
-									<a href="images/fulls/04.jpg">
+									<a href="/events/voting">
 										<img src="images/thumbs/04.jpg" alt="" />
-										<h3>Lorem ipsum dolor sit amet</h3>
+
 									</a>
 									<a href="images/fulls/05.jpg">
 										<img src="images/HACKATHON WEBSITE SLIDER.jpg" alt="" />
-										<h3>Lorem ipsum dolor sit amet</h3>
+
 									</a>
 								</div>
 								<div>
 									<a href="images/fulls/06.jpg">
 										<img src="images/thumbs/06.jpg" alt="" />
-										<h3>Lorem ipsum dolor sit amet</h3>
+
 									</a>
 									<a href="images/fulls/07.jpg">
 										<img src="images/603267744.jpg" alt="" />
-										<h3>Lorem ipsum dolor sit amet</h3>
+
 									</a>
 								</div>
 							</section>

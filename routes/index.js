@@ -4,7 +4,15 @@ const Models  = require('../models')
 const bcrypt  = require('bcrypt');
 
 router.get('/', (req, res) => {
-	res.render('landingpage', {login : req.session.login})
+	Models.Event.findAll({
+		include:[
+		  {model:Models.Group}
+		]
+	}).then(dataEvent => {
+		//res.send(dataEvent)
+		res.render('landingpage', {login : req.session.login, dataEvent:dataEvent})
+	})
+
 })
 
 
@@ -43,9 +51,16 @@ router.post('/signin', (req, res) => {
 			bcrypt.compare(req.body.password, user.password).then(function(result) {
     		// res == true
     		if(result){
-    			req.session.login = true
-					req.session.UserId = user.id
-    			res.render('landingpage', {login : req.session.login})
+					Models.Event.findAll({
+						include:[
+							{model:Models.Group}
+						]
+					}).then(dataEvent => {
+						//res.send(dataEvent)
+						req.session.login = true
+						req.session.UserId = user.id
+						res.render('landingpage', {login : req.session.login, dataEvent:dataEvent})
+					})
     		}else{
     			let err = "Username or Password is invalid"
 					res.render('login/signin', {err})

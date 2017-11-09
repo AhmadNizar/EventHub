@@ -2,16 +2,16 @@
 
 
   <div class="container-edit">
-  <h2>Add Ever</h2>
-  <form id="form-edit" action="/groups/editgroup/<%= GroupId %>" method="post">
+  <h2>Add Event</h2>
+  <form id="form-edit" action="/event/addevent/<%= GroupId %>" method="post">
     <label>Name Of Event</label>
     <input id=boxinput type="text" name="name_of_event" placeholder="Seminar">
     <br>
-    <label>Locaton</label>
+    <label>Location</label>
     <input id=boxinput type="text" name="location" placeholder="Jakarta">
     <br>
     <label>Date</label>
-      <input id="datepicker" />
+      <input name="date" id="datepicker" />
     <br>
     <br>
     <input type="submit" name="" value="submit">

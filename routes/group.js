@@ -1,7 +1,7 @@
 const express = require('express')
 const router  = express.Router()
 const Model = require('../models')
-
+const checkAuth = require('../helpers/login')
 
 
 // ================ group ================== //
@@ -23,7 +23,7 @@ router.get('/', (req, res) => {
       let index = dataGroups.findIndex(function(group){
         return group.id == groupArr[i]
       })
-      console.log(index, '---------------');
+
       dataGroups.splice(index, 1)
     }
     //res.send(dataGroups)
@@ -36,7 +36,7 @@ router.get('/', (req, res) => {
 
 // ================ mygroup ================== //
 
-router.get('/mygroup', (req, res) => {
+router.get('/mygroup', checkAuth, (req, res) => {
   Model.User.findOne(
   {
     include:[Model.Group],
@@ -49,7 +49,7 @@ router.get('/mygroup', (req, res) => {
 })
 
 
-router.get('/editgroup/:id', (req, res) => {
+router.get('/editgroup/:id', checkAuth, (req, res) => {
   Model.Group.findOne(
     {where:{id:req.params.id}}
   )
@@ -59,7 +59,7 @@ router.get('/editgroup/:id', (req, res) => {
 })
 
 
-router.post('/editgroup/:id', (req, res) => {
+router.post('/editgroup/:id', checkAuth, (req, res) => {
   Model.Group.update({
     name_of_group : req.body.name_of_group,
     category : req.body.category
@@ -72,7 +72,7 @@ router.post('/editgroup/:id', (req, res) => {
 })
 
 
-router.get('/deletegroup/:id', (req, res) => {
+router.get('/deletegroup/:id', checkAuth, (req, res) => {
   Model.Group.destroy({
     where:{id:req.params.id}
   }).then(() => {
@@ -82,7 +82,7 @@ router.get('/deletegroup/:id', (req, res) => {
 
 // ================ joinedgroup ================== //
 
-router.get('/joinedgroup', (req, res) => {
+router.get('/joinedgroup', checkAuth, (req, res) => {
 
   Model.User.findOne(
   {
@@ -99,12 +99,6 @@ router.get('/joinedgroup', (req, res) => {
 // router.get('/unfollow/:id', (req, res) => {
 //   console.log(req.body);
 // })
-//
-
-router.get('/addevent/:id', (req, res) => {
-  res.render('groups/addevents', {GroupId:req.params.id, login:req.session.login})
-})
-
 
 
 
@@ -112,8 +106,8 @@ router.get('/addevent/:id', (req, res) => {
 
 // ================ new group ================== //
 
-router.get('/addnewgroup', (req, res) => {
-  res.render('groups/createnewgroup')
+router.get('/addnewgroup', checkAuth, (req, res) => {
+  res.render('groups/createnewgroup', {login:req.session.login})
 })
 
 router.post('/addnewgroup', (req, res) => {
@@ -134,6 +128,88 @@ router.post('/addnewgroup', (req, res) => {
     })
   })
 })
+
+
+// ================ addevent group ================== //
+router.get('/addevent/:id', (req, res) => {
+  res.render('groups/addevents', {GroupId:req.params.id, login:req.session.login})
+})
+
+//
+// router.post('/addevent/:id', (req, res) => {
+//   let name_of_event = req.body.name_of_event
+//   let location = req.body.location
+//   let date = req.body.date
+//   let status = false
+//   let GroupId = req.params.id
+//   Model.Event.create({
+//     name_of_event : name_of_event,
+//     location : location,
+//     date : date,
+//     status : status,
+//     GroupId : GroupId
+//   })
+//   .then(dataEvent => {
+//     res.redirect('/groups')
+//   })
+// })
+//
+//
+// router.get('/detailevent/:id', (req, res) => {
+//   Model.Event.findOne({
+//     include:[
+//       Model.Group
+//     ], where:{id:req.params.id}
+//   })
+//   .then(dataEvent => {
+//     //res.send(dataEvent)
+//     res.render('groups/votes', {dataEvent:dataEvent, login:req.session.login})
+//   })
+// })
+//
+//
+//
+//
+//
+// router.post('/detailevent/:id', (req, res) => {
+//
+//   Model.Event.findOne({
+//     include:[
+//       Model.Group
+//     ], where:{id:req.params.id}
+//   }).then(dataEvent => {
+//     Model.Event.update({
+//       votes : dataEvent.votes + 1
+//     },{where:{id:dataEvent.id}})
+//     .then(() => {
+//       Model.UserGroup.findAll({
+//         include:[
+//           Model.User
+//         ],where:{GroupId:dataEvent.Group.id}
+//       })
+//       .then(dataGroup => {
+//
+//         //console.log(dataEvent);
+//         let count = (dataEvent.votes / dataGroup.length  ) * 100
+//         //console.log(count);
+//         if(count >= 80){
+//           let toMail = []
+//          dataGroup.forEach(item => {
+//            toMail.push(item.User.email)
+//             mailer(item, dataEvent)
+//           })
+//          }
+//       })
+//       .then(() => {
+//         res.redirect('/')
+//       })
+//     })
+//   })
+// })
+
+
+
+
 
 
 

@@ -1,0 +1,26 @@
+<%include ../partials/navbar.ejs%>
+
+
+  <div class="container-edit">
+  <h2> Event</h2>
+
+  <h4><%=dataEvent.Group.name_of_group%></h4>
+
+    <h4><%=dataEvent.name_of_event%></h4>
+        <h4>Total : <%=dataEvent.votes%></h4>
+
+  <form id="form-edit" action="/event/detailevent/<%=dataEvent.id%>" method="post">
+
+
+
+    <input type="submit" name="" value="Vote">
+
+  </form>
+  </div>
+</body>
+  <script>
+  $(document).ready(function() {
+    $("#datepicker").datepicker();
+  });
+  </script>
+</html>
